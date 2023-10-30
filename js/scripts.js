@@ -3,7 +3,7 @@ const API_KEY = '66576c6439a06ef7c8f118ab392d6de9';
 const API_BASE = 'https://api.themoviedb.org/3';
 
 // await쓸때는 async 같이써야함
-const getTopRated = async(page) => {
+const getTopRated = async(page = 1) => {
   const response = await fetch(`${API_BASE}/movie/top_rated?language=en-US&page=${page}&include_adult=false&api_key=${API_KEY}`);
   if(response.ok) {
     const json = await response.json();
@@ -45,7 +45,7 @@ const input = document.getElementById("myInput");
 
 
 const init = async() => {
-  const movies = await getTopRated();
+  const movies = await getTopRated(1);
   if(!movies) return;
 // 카드선택했을때 아이디나오게 하기
   const cardsEl = document.querySelector('.cards');
